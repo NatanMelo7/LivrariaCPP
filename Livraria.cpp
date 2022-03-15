@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -9,25 +10,40 @@ class Livro {
         string sinopse;
     public:
         Livro(){
-            id = id + 1; 
+            id = id + 1;
         }
-        int getId(); 
+        int getId();
         string getNome();
         string getSinopse();
         void setNome(string n);
         void setSinopse(string s);
 };
 
-int Livro::getId(){ return id;  }
+int Livro::getId(){ return id; };
 string Livro::getNome(){ return nome; };
 string Livro::getSinopse(){ return sinopse; }
 void Livro::setNome(string n){ nome = n;}
 void Livro::setSinopse(string s){ sinopse = s; }
 
+class Database {
+    private:
+        vector<Livro> database;
+    public:
+        void addLivro(Livro livro);
+
+};
+
+void Database::addLivro(Livro livro){ database.push_back(livro); }
+
+
+
+
 int main()
 {
     cout << "Livraria Anhembi Morumbi" << endl;
+
     Livro lv;
+    Database database;
     string nome_livro;
     string sinopse_livro;
 
@@ -42,6 +58,7 @@ int main()
     cout << "Dados do livro: " << endl;
     cout << lv.getId() << " - " << lv.getNome() << " - " << lv.getSinopse() << endl;
 
+    database.addLivro(lv);
 
     return EXIT_SUCCESS;
 }
